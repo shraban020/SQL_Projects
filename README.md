@@ -1,7 +1,3 @@
-Here’s a polished, professional description you can paste into your **README.md** file for a Data Warehousing project. I included sections commonly expected in GitHub or portfolio repositories. You can edit names or tools to match your stack.
-
----
-
 # 📊 Data Warehousing Project
 
 ## 📌 Overview
