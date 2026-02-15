@@ -1,104 +1,142 @@
-# 📊 Data Warehousing Project
+# 🥇 SQL Server Data Warehouse — Medallion Architecture
 
 ## 📌 Overview
 
-This project demonstrates the design and implementation of a **modern data warehouse solution** built to collect, transform, and analyze large volumes of structured data. The goal is to provide reliable, scalable, and high-performance analytics for reporting and decision-making.
+This project implements a **modern data warehouse solution built on Microsoft SQL Server** using the **Medallion Architecture pattern (Bronze, Silver, Gold layers)**. The system ingests raw data from multiple sources, refines it through structured transformation stages, and delivers analytics-ready datasets for reporting and business intelligence.
 
-The solution integrates data from multiple sources, applies transformation logic, and stores it in a centralized warehouse optimized for analytical queries.
+The architecture ensures **data reliability, scalability, traceability, and performance optimization**, making it suitable for enterprise-grade analytical workloads.
 
 ---
 
 ## 🎯 Objectives
 
-* Consolidate data from disparate sources into a single source of truth
-* Perform data cleaning, transformation, and validation
-* Design an optimized dimensional data model
-* Enable efficient reporting and analytics
-* Ensure data consistency and integrity
+* Centralize data from multiple sources into a unified warehouse
+* Maintain raw historical data for auditing and lineage
+* Apply structured transformations in controlled layers
+* Deliver high-quality analytical datasets
+* Optimize performance for reporting and dashboards
 
 ---
 
-## 🏗 Architecture
+## 🏗 Architecture Overview
 
-The project follows a standard **ETL + Warehouse + Analytics** architecture:
-
+```text
+Source Systems
+      ↓
+Bronze Layer (Raw Data)
+      ↓
+Silver Layer (Cleaned & Transformed)
+      ↓
+Gold Layer (Analytics Ready)
+      ↓
+Reports / BI Tools
 ```
-Sources → Staging → ETL Processing → Data Warehouse → BI / Analytics
-```
-
-**Layers Explained:**
-
-* **Source Layer** — Raw data from files, APIs, or databases
-* **Staging Layer** — Temporary storage for preprocessing
-* **Transformation Layer** — Cleansing, normalization, aggregation
-* **Warehouse Layer** — Structured schema (Star/Snowflake)
-* **Presentation Layer** — Dashboards and reporting tools
 
 ---
 
-## 🧰 Tech Stack
+## 🥉 Bronze Layer — Raw Data
 
-* **Programming:** SQL, Python
-* **ETL Tools:** (e.g., Airflow / SSIS / dbt — replace as needed)
-* **Database:** (e.g., Snowflake, Redshift, PostgreSQL)
-* **Visualization:** (e.g., Power BI, Tableau)
-* **Version Control:** Git & GitHub
+* Stores raw extracted data exactly as received
+* Minimal transformations applied
+* Supports data lineage and auditing
+* Acts as the single source of truth for ingestion
+
+**Characteristics**
+
+* Append-only loads
+* Preserves history
+* Schema closely matches source
+
+---
+
+## 🥈 Silver Layer — Cleaned & Structured
+
+* Cleans, validates, and standardizes data
+* Applies business rules and transformations
+* Resolves duplicates and inconsistencies
+* Integrates multiple sources
+
+**Processing Tasks**
+
+* Data validation
+* Type casting
+* Standardization
+* Deduplication
+* Referential integrity checks
+
+---
+
+## 🥇 Gold Layer — Analytics Ready
+
+* Optimized for reporting and analytics
+* Uses dimensional modeling (Star/Snowflake schema)
+* Contains fact and dimension tables
+* Provides aggregated and curated datasets
+
+**Optimizations**
+
+* Indexed tables
+* Precomputed aggregations
+* Query-optimized schema
+* Partitioning for large datasets
+
+---
+
+## 🧰 Technology Stack
+
+* **Database:** Microsoft SQL Server
+* **Language:** T-SQL
+* **Scheduling:** SQL Server Agent Jobs
+* **Modeling:** Dimensional Modeling
+* **Optimization:** Indexing, Partitioning, Query Tuning
 
 ---
 
 ## 📂 Project Structure
 
-```
-data-warehouse-project/
+```text
+data-warehouse/
 │
-├── data/              # Raw and processed datasets
-├── scripts/           # ETL scripts
-├── sql/               # Schema and query files
-├── docs/              # Documentation
-└── README.md          # Project overview
+├── bronze/        # Raw ingestion tables
+├── silver/        # Cleaned & transformed data
+├── gold/          # Analytical models
+├── etl/           # Stored procedures & scripts
+├── jobs/          # Scheduler jobs
+└── docs/          # Documentation
 ```
 
 ---
 
-## 🔄 ETL Workflow
+## 🔄 Data Pipeline Workflow
 
-1. Extract data from multiple sources
-2. Validate and clean raw data
-3. Transform data into analytical format
-4. Load into warehouse tables
-5. Run analytical queries & dashboards
-
----
-
-## 📊 Key Features
-
-✔ Automated data pipelines
-✔ Optimized schema design
-✔ Incremental data loading
-✔ Data quality checks
-✔ Scalable architecture
+1. Extract data from sources into Bronze tables
+2. Validate and clean data into Silver tables
+3. Transform into analytical models in Gold layer
+4. Run analytical queries and reporting views
 
 ---
 
-## 🚀 Future Improvements
+## ⭐ Key Features
 
-* Real-time streaming ingestion
-* Data lineage tracking
-* Automated anomaly detection
-* Role-based access control
+✔ Layered architecture for maintainability
+✔ Clear data lineage and traceability
+✔ High-performance analytical queries
+✔ Modular ETL design
+✔ Scalable warehouse structure
+✔ Easy debugging and monitoring
 
 ---
 
-## 🤝 Contribution
+## 🚀 Future Enhancements
 
-Contributions are welcome! Feel free to fork this repository and submit pull requests.
+* Real-time ingestion support
+* Automated data quality monitoring
+* Metadata-driven pipelines
+* Role-based security layers
+* Integration with visualization tools
 
 ---
 
 ## 📜 License
 
-This project is licensed under the MIT License.
-
----
-
-✅ **Tip:** If you tell me your exact tools (Snowflake, BigQuery, Azure Synapse, etc.), I can tailor this README to your specific tech stack and make it look customized instead of generic.
+MIT License
