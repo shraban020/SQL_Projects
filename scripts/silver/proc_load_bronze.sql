@@ -236,13 +236,13 @@ BEGIN
 	(
 	id,
 	cat,
-	sucat,
+	subcat,
 	maintenance
 	)
 	SELECT
 	id,
 	cat,
-	sucat,
+	subcat,
 	maintenance
 	FROM
 	bronze.erp_px_cat_g1v2;
