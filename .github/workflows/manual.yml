@@ -38,4 +38,4 @@ jobs:
           -d ${{ secrets.DB_NAME }} \
           -U ${{ secrets.DB_USER }} \
           -P ${{ secrets.DB_PASSWORD }} \
-          -i sql/proc_load_bronze.sql
+          -i scripts/bronze/proc_load_bronze.sql
