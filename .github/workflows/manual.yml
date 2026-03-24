@@ -1,0 +1,28 @@
+name: Deploy Stored Procedure
+
+on:
+  push:
+    paths:
+      - 'sql/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install SQLCMD
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y mssql-tools unixodbc-dev
+
+      - name: Run Stored Procedure Script
+        run: |
+          /opt/mssql-tools/bin/sqlcmd \
+          -S ${{ secrets.DB_SERVER }} \
+          -d ${{ secrets.DB_NAME }} \
+          -U ${{ secrets.DB_USER }} \
+          -P ${{ secrets.DB_PASSWORD }} \
+          -i sql/proc_load_bronze.sql
