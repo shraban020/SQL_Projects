@@ -7,7 +7,7 @@ Script Purpose:
 	The Gold layer represents the final dimension and fact tables (Star Schema)
 
 	Each view performs transformations and combines data from the silver layer
-	to produce a clean, enriched, amd business-ready dataset.
+	to produce a clean, enriched, and business-ready dataset.
 
 Usage:
 	- These views can be queried directly for analytics and reporting.
@@ -69,7 +69,7 @@ WHERE prd_end_dt IS NULL; -- Filter out all historical data
 
 
 -- ==============================================================================
--- Create Fact:gold.fact_sales
+-- Create Fact: gold.fact_sales
 -- ==============================================================================
 IF OBJECT_ID('gold.fact_sales','V') IS NOT NULL
 	DROP VIEW gold.fact_sales;
@@ -86,7 +86,7 @@ SELECT
 	sd.sls_sales AS sales_amount,
 	sd.sls_quantity AS quantity,
 	sd.sls_price AS price
-FROM silver.crm_sales_deails sd
+FROM silver.crm_sales_details sd
 LEFT JOIN gold.dim_products pr
 	ON sd.sls_prd_key = pr.product_number
 LEFT JOIN gold.dim_customers cu
