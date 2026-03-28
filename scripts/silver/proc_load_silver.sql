@@ -116,10 +116,10 @@ BEGIN
 	PRINT ('=====================================================================================');
 
 	SET @start_time = GETDATE();
-	PRINT '>> Truncating Table: silver.crm_sales_deails';
-	TRUNCATE TABLE silver.crm_sales_deails;
-	PRINT '>> Inserting Data Into: silver.crm_sales_deails';
-	INSERT INTO silver.crm_sales_deails
+	PRINT '>> Truncating Table: silver.crm_sales_details';
+	TRUNCATE TABLE silver.crm_sales_details;
+	PRINT '>> Inserting Data Into: silver.crm_sales_details';
+	INSERT INTO silver.crm_sales_details
 	(
 	sls_ord_num,
 	sls_prd_key,
@@ -159,7 +159,7 @@ BEGIN
 		ELSE sls_price
 	END AS sls_price
 	FROM
-	bronze.crm_sales_deails;
+	bronze.crm_sales_details;
 
 	SET @end_time = GETDATE();
 	PRINT '>> Load Duration: ' + CAST(DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' Seconds';
